@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class BigRegistrationFormTest extends TestBase {
 
     @Test
-    void successfulFillFormTest () {
+    void successfulFillFormTestAllInputs () {
         open("/automation-practice-form");
         $("[id=firstName]").setValue("Tony");
         $("[id=lastName]").setValue("Stark");
@@ -27,6 +27,21 @@ public class BigRegistrationFormTest extends TestBase {
         $("[id=state]").click();
         selectFromDropdown("[id=state]", "NCR");
         selectFromDropdown("[id=city]", "Delhi");
+
+        $("[id=submit]").click();
+
+        $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
+
+    }
+
+    @Test
+    void successfulFillFormTestRequiredInputs () {
+        open("/automation-practice-form");
+        $("[id=firstName]").setValue("Peter");
+        $("[id=lastName]").setValue("Parker");
+        $("[id=gender-radio-1]").click();
+        $("[id=userNumber]").setValue("9876543210");
+
         $("[id=submit]").click();
 
         $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
