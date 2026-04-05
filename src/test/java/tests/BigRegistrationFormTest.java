@@ -103,6 +103,4 @@ public class BigRegistrationFormTest extends TestBase {
         $("#userNumber").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
 
-    private void selectFromDropdown(String s, String ncr) {
-    }
 }
