@@ -14,25 +14,34 @@ public class BigRegistrationFormTest extends TestBase {
     void successfulFillFormAllInputsTest () {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Tony");
-        $("[id=lastName]").setValue("Stark");
-        $("[id=userEmail]").setValue("tonystark@mail.ru");
-        $("[id=gender-radio-1]").click();
-        $("[id=userNumber]").setValue("0123456789");
-        $("[id=dateOfBirthInput]").click();
+        $("#firstName").setValue("Tony");
+        $("#lastName").setValue("Stark");
+        $("#userEmail").setValue("tonystark@mail.ru");
+        $("#gender-radio-1").click();
+        $("#userNumber").setValue("0123456789");
+        $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("January");
         $(".react-datepicker__year-select").selectOption("2000");
-        $$(".react-datepicker__month").findBy(text("6")).click();
-        $("[id=subjectsInput]").setValue("Subject");
-        $("[id=hobbies-checkbox-1]").click();
-        $("[id=uploadPicture]").uploadFile(new File("src/test/java/tests/resources/img/1.jpg"));
-        $("[id=currentAddress]").setValue("Avengers Tower");
-        selectFromDropdown("[id=state]", "NCR");
-        selectFromDropdown("[id=city]", "Delhi");
+        $$(".react-datepicker__month").findBy(text("19")).click();
+        $("#subjectsInput").setValue("Subject");
+        $("#hobbies-checkbox-1").click();
+        $("#uploadPicture").uploadFile(new File("src/test/java/tests/resources/img/1.jpg"));
+        $("#currentAddress").setValue("Avengers Tower");
+        $("#react-select-3-input").setValue("NCR").pressEnter();
+        $("#react-select-4-input").setValue("Delhi").pressEnter();
 
-        $("[id=submit]").click(ClickOptions.usingJavaScript());
+        $("#submit").click(ClickOptions.usingJavaScript());
 
-        $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table").shouldHave(text("Tony Stark"));
+        $(".table").shouldHave(text("tonystark@mail.ru"));
+        $(".table").shouldHave(text("Male"));
+        $(".table").shouldHave(text("0123456789"));
+        $(".table").shouldHave(text("19 January,2000"));
+        $(".table").shouldHave(text("Sports"));
+        $(".table").shouldHave(text("1.jpg"));
+        $(".table").shouldHave(text("Avengers Tower"));
+        $(".table").shouldHave(text("NCR Delhi"));
 
     }
 
@@ -40,28 +49,30 @@ public class BigRegistrationFormTest extends TestBase {
     void successfulFillFormRequiredInputsTest () {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Peter");
-        $("[id=lastName]").setValue("Parker");
-        $("[id=gender-radio-1]").click();
-        $("[id=userNumber]").setValue("9876543210");
+        $("#firstName").setValue("Peter");
+        $("#lastName").setValue("Parker");
+        $("#gender-radio-1").click();
+        $("#userNumber").setValue("9876543210");
 
-        $("[id=submit]").click(ClickOptions.usingJavaScript());
+        $("#submit").click(ClickOptions.usingJavaScript());
 
-        $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
-
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table").shouldHave(text("Peter Parker"));
+        $(".table").shouldHave(text("Male"));
+        $(".table").shouldHave(text("9876543210"));
     }
 
     @Test
     void failedFillFormFirstNameIsEmptyTest () {
         open("/automation-practice-form");
 
-        $("[id=lastName]").setValue("Parker");
-        $("[id=gender-radio-1]").click();
-        $("[id=userNumber]").setValue("9876543210");
+        $("#lastName").setValue("Parker");
+        $("#gender-radio-1").click();
+        $("#userNumber").setValue("9876543210");
 
-        $("[id=submit]").click(ClickOptions.usingJavaScript());
+        $("#submit").click(ClickOptions.usingJavaScript());
 
-        $("[id=firstName]").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        $("#firstName").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
 
 
@@ -69,27 +80,27 @@ public class BigRegistrationFormTest extends TestBase {
     void failedFillFormGenderIsEmptyTest () {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Peter");
-        $("[id=lastName]").setValue("Parker");
-        $("[id=userNumber]").setValue("9876543210");
+        $("#firstName").setValue("Peter");
+        $("#lastName").setValue("Parker");
+        $("#userNumber").setValue("9876543210");
 
-        $("[id=submit]").click(ClickOptions.usingJavaScript());
+        $("#submit").click(ClickOptions.usingJavaScript());
 
-        $("[id=gender-radio-1]").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        $("#gender-radio-1").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
 
     @Test
     void failedFillFormUserNumberFilledByLettersTest () {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Peter");
-        $("[id=lastName]").setValue("Parker");
-        $("[id=gender-radio-1]").click();
-        $("[id=userNumber]").setValue("abcdefghij");
+        $("#firstName").setValue("Peter");
+        $("#lastName").setValue("Parker");
+        $("#gender-radio-1").click();
+        $("#userNumber").setValue("abcdefghij");
 
-        $("[id=submit]").click(ClickOptions.usingJavaScript());
+        $("#submit").click(ClickOptions.usingJavaScript());
 
-        $("[id=userNumber]").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        $("#userNumber").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
 
     private void selectFromDropdown(String s, String ncr) {
