@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static tests.testdata.TestData.*;
 
 public class SmallRegistrationFormTest extends TestBase {
 
@@ -11,16 +12,16 @@ public class SmallRegistrationFormTest extends TestBase {
     void successfulFillFormTest() {
         open("/text-box");
 
-        $("#userName").setValue("Pureshka s kotletkoy");
-        $("#userEmail").setValue("pureshka@gmail.com");
-        $("#currentAddress").setValue("Tarelka");
-        $("#permanentAddress").setValue("Kastrulka");
+        $("#userName").setValue(userName);
+        $("#userEmail").setValue(userEmail);
+        $("#currentAddress").setValue(currentAddress);
+        $("#permanentAddress").setValue(permanentAddress);
 
         $("#submit").click();
 
-        $("#name").shouldHave(text("Pureshka s kotletkoy"));
-        $("#email").shouldHave(text("pureshka@gmail.com"));
-        $("#currentAddress.mb-1").shouldHave(text("Tarelka"));
+        $("#name").shouldHave(text(userName));
+        $("#email").shouldHave(text(userEmail));
+        $("#currentAddress.mb-1").shouldHave(text("Avengers Tower"));
         $("#permanentAddress.mb-1").shouldHave(text("Kastrulka"));
 
     }
@@ -29,10 +30,10 @@ public class SmallRegistrationFormTest extends TestBase {
     void failedFillFormTest() {
         open("/text-box");
 
-        $("#userName").setValue("Pureshka s kotletkoy");
-        $("#userEmail").setValue("pureshka");
-        $("#currentAddress").setValue("Tarelka");
-        $("#permanentAddress").setValue("Kastrulka");
+        $("#userName").setValue(userName);
+        $("#userEmail").setValue(failedUserEmail);
+        $("#currentAddress").setValue(currentAddress);
+        $("#permanentAddress").setValue(permanentAddress);
 
         $("#submit").click();
 
