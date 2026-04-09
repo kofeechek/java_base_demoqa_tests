@@ -3,8 +3,6 @@ package tests;
 import com.codeborne.selenide.ClickOptions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static tests.testdata.TestData.*;
@@ -25,7 +23,7 @@ public class BigRegistrationFormTest extends TestBase {
         $(".react-datepicker__year-select").selectOption("2000");
         $$(".react-datepicker__month").findBy(text("19")).click();
         $("#hobbies-checkbox-1").click();
-        $("#uploadPicture").uploadFile(new File("src/test/java/tests/resources/img/1.jpg"));
+        $("#uploadPicture").uploadFromClasspath("1.jpg");
         $("#currentAddress").setValue(currentAddress);
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#react-select-4-input").setValue("Delhi").pressEnter();
