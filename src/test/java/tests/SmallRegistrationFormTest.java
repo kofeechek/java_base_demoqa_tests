@@ -21,8 +21,8 @@ public class SmallRegistrationFormTest extends TestBase {
 
         $("#name").shouldHave(text(userName));
         $("#email").shouldHave(text(userEmail));
-        $("#currentAddress.mb-1").shouldHave(text("Avengers Tower"));
-        $("#permanentAddress.mb-1").shouldHave(text("Kastrulka"));
+        $("#currentAddress.mb-1").shouldHave(text(currentAddress));
+        $("#permanentAddress.mb-1").shouldHave(text(permanentAddress));
 
     }
 
@@ -37,7 +37,7 @@ public class SmallRegistrationFormTest extends TestBase {
 
         $("#submit").click();
 
-        $("#userEmail").shouldHave(cssClass("field-error"));
+        $("#userEmail").shouldHave(cssClass(errorClass));
 
     }
 }

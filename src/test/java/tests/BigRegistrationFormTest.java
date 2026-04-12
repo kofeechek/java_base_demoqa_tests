@@ -19,27 +19,27 @@ public class BigRegistrationFormTest extends TestBase {
         $("#gender-radio-1").click();
         $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("January");
-        $(".react-datepicker__year-select").selectOption("2000");
-        $$(".react-datepicker__month").findBy(text("19")).click();
+        $(".react-datepicker__month-select").selectOption(calendarMonth);
+        $(".react-datepicker__year-select").selectOption(calendarYear);
+        $$(".react-datepicker__month").findBy(text(calendarDay)).click();
         $("#hobbies-checkbox-1").click();
-        $("#uploadPicture").uploadFromClasspath("1.jpg");
+        $("#uploadPicture").uploadFromClasspath(userImage);
         $("#currentAddress").setValue(currentAddress);
-        $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#react-select-4-input").setValue("Delhi").pressEnter();
+        $("#react-select-3-input").setValue(userState).pressEnter();
+        $("#react-select-4-input").setValue(userCity).pressEnter();
 
         $("#submit").click(ClickOptions.usingJavaScript());
 
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $("#example-modal-sizes-title-lg").shouldHave(text(SuccessMessage));
         $(".table").shouldHave(text(firstName + " " + lastName));
         $(".table").shouldHave(text(userEmail));
-        $(".table").shouldHave(text("Male"));
+        $(".table").shouldHave(text(userGender));
         $(".table").shouldHave(text(userNumber));
-        $(".table").shouldHave(text("19 January,2000"));
-        $(".table").shouldHave(text("Sports"));
-        $(".table").shouldHave(text("1.jpg"));
+        $(".table").shouldHave(text(calendarDay + " " + calendarMonth+ "," + calendarYear));
+        $(".table").shouldHave(text(userHobby));
+        $(".table").shouldHave(text(userImage));
         $(".table").shouldHave(text(currentAddress));
-        $(".table").shouldHave(text("NCR Delhi"));
+        $(".table").shouldHave(text(userState + " " + userCity));
 
     }
 
@@ -56,7 +56,7 @@ public class BigRegistrationFormTest extends TestBase {
 
         $("#example-modal-sizes-title-lg").shouldHave(text(successMessage));
         $(".table").shouldHave(text(firstName + " " + lastName));
-        $(".table").shouldHave(text("Male"));
+        $(".table").shouldHave(text(userGender));
         $(".table").shouldHave(text(userNumber));
     }
 
