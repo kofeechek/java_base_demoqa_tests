@@ -1,2 +1,2 @@
-# java_base_demoqa_tests
+# java_demoqa_tests
 Hello!!! 

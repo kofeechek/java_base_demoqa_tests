@@ -10,10 +10,12 @@ repositories {
 
 dependencies {
     testImplementation(
+            "com.github.javafaker:javafaker:1.0.2",
             "com.codeborne:selenide:7.14.0",
             platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
+
 
 tasks.withType(JavaCompile){
     options.encoding = 'UTF-8'
