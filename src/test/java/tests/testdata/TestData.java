@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import utils.RandomRegistrationTestsUtils;
 
 public class TestData {
-    public static Faker faker = new Faker();
+    public Faker faker = new Faker();
     RandomRegistrationTestsUtils randomRegistrationTestsUtils = new RandomRegistrationTestsUtils();
 
     public String firstName = faker.name().firstName();
@@ -16,14 +16,14 @@ public class TestData {
     public String calendarYear = String.valueOf(faker.number().numberBetween(1960, 2008));
     public String userGender = faker.options().option("Male", "Female", "Other");
     public String failedUserEmail = faker.name().firstName();
-    public String userNumber = faker.number().digits(10);
-    public String userHobby = "Sports";
+    public String userNumber = faker.phoneNumber().subscriberNumber(10);
+    public String userHobby = faker.options().option("Sports", "Reading", "Music");
     public String userImage = "1.jpg";
     public String failedUserNumber = faker.lorem().characters(10);
     public String currentAddress = faker.address().fullAddress();
     public String userName = "Pureshka s kotletkoy";
-    public String userCity = "Delhi";
-    public String userState = "NCR";
+    public String userState = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
+    public String userCity = randomRegistrationTestsUtils.getRandomCity(userState);
     public String permanentAddress = "Kastrulka";
     public String successMessage = "Thanks for submitting the form";
     public String errorCssKey = "border-color";

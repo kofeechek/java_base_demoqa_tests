@@ -1,11 +1,13 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.components.ResultFormComponent;
 import tests.testdata.TestData;
 
 public class RegistrationTests extends TestBase {
 
     TestData testData = new TestData();
+    ResultFormComponent resultFormComponent = new ResultFormComponent();
 
     @Test
     void successfulFillFormAllInputsTest() {
@@ -23,16 +25,17 @@ public class RegistrationTests extends TestBase {
 
                 .submitRegistrationForm()
 
-                .successMessageCheck(testData.successMessage)
-                .checkResult(testData.firstName + " " + testData.lastName)
-                .checkResult(testData.userEmail)
-                .checkResult(testData.userGender)
-                .checkResult(testData.userNumber)
-                .checkResult(testData.calendarDay + " " + testData.calendarMonth + "," + testData.calendarYear)
-                .checkResult(testData.userHobby)
-                .checkResult(testData.userImage)
-                .checkResult(testData.currentAddress)
-                .checkResult(testData.userState + " " + testData.userCity);
+                .successMessageCheck(testData.successMessage);
+
+        resultFormComponent.checkFormResults("Student Name", testData.firstName + " " + testData.lastName)
+                .checkFormResults("Student Email", testData.userEmail)
+                .checkFormResults("Gender", testData.userGender)
+                .checkFormResults("Mobile", testData.userNumber)
+                .checkFormResults("Date of Birth", testData.calendarDay + " " + testData.calendarMonth + "," + testData.calendarYear)
+                .checkFormResults("Hobbies", testData.userHobby)
+                .checkFormResults("Picture", testData.userImage)
+                .checkFormResults("Address", testData.currentAddress)
+                .checkFormResults("State and City", testData.userState + " " + testData.userCity);
 
     }
 
@@ -46,11 +49,12 @@ public class RegistrationTests extends TestBase {
 
                 .submitRegistrationForm()
 
-                .successMessageCheck(testData.successMessage)
-                .checkResult(testData.firstName)
-                .checkResult(testData.lastName)
-                .checkResult(testData.userGender)
-                .checkResult(testData.userNumber);
+                .successMessageCheck(testData.successMessage);
+
+        resultFormComponent.checkFormResults("Student Name", testData.firstName + " " + testData.lastName)
+                .checkFormResults("Gender", testData.userGender)
+                .checkFormResults("Mobile", testData.userNumber);
+
 
     }
 
