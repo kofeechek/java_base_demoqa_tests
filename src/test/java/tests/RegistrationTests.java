@@ -1,95 +1,97 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import static tests.testdata.TestData.*;
+import tests.testdata.TestData;
 
 public class RegistrationTests extends TestBase {
 
+    TestData testData = new TestData();
 
     @Test
     void successfulFillFormAllInputsTest() {
         registrationPage.openPage()
-                .typeFirstName(firstName)
-                .typeLastName(lastName)
-                .typeUserEmail(userEmail)
-                .setGender(userGender)
-                .typeUserNumber(userNumber)
-                .setDateOfBirth(calendarDay, calendarMonth, calendarYear)
-                .setHobby(userHobby)
-                .uploadImage(userImage)
-                .typeUserCurrentAddress(currentAddress)
-                .setStateAndCity(userState, userCity)
+                .typeFirstName(testData.firstName)
+                .typeLastName(testData.lastName)
+                .typeUserEmail(testData.userEmail)
+                .setGender(testData.userGender)
+                .typeUserNumber(testData.userNumber)
+                .setDateOfBirth(testData.calendarDay, testData.calendarMonth, testData.calendarYear)
+                .setHobby(testData.userHobby)
+                .uploadImage(testData.userImage)
+                .typeUserCurrentAddress(testData.currentAddress)
+                .setStateAndCity(testData.userState, testData.userCity)
 
                 .submitRegistrationForm()
 
-                .successMessageCheck(successMessage)
-                .checkResult(firstName + " " + lastName)
-                .checkResult(userEmail)
-                .checkResult(userGender)
-                .checkResult(userNumber)
-                .checkResult(calendarDay + " " + calendarMonth + "," + calendarYear)
-                .checkResult(userHobby)
-                .checkResult(userImage)
-                .checkResult(currentAddress)
-                .checkResult(userState + " " + userCity);
+                .successMessageCheck(testData.successMessage)
+                .checkResult(testData.firstName + " " + testData.lastName)
+                .checkResult(testData.userEmail)
+                .checkResult(testData.userGender)
+                .checkResult(testData.userNumber)
+                .checkResult(testData.calendarDay + " " + testData.calendarMonth + "," + testData.calendarYear)
+                .checkResult(testData.userHobby)
+                .checkResult(testData.userImage)
+                .checkResult(testData.currentAddress)
+                .checkResult(testData.userState + " " + testData.userCity);
 
     }
 
     @Test
     void successfulFillFormRequiredInputsTest() {
         registrationPage.openPage()
-                .typeFirstName(firstName)
-                .typeLastName(lastName)
-                .setGender(userGender)
-                .typeUserNumber(userNumber)
+                .typeFirstName(testData.firstName)
+                .typeLastName(testData.lastName)
+                .setGender(testData.userGender)
+                .typeUserNumber(testData.userNumber)
 
                 .submitRegistrationForm()
 
-                .successMessageCheck(successMessage)
-                .checkResult(firstName)
-                .checkResult(lastName)
-                .checkResult(userGender)
-                .checkResult(userNumber);
+                .successMessageCheck(testData.successMessage)
+                .checkResult(testData.firstName)
+                .checkResult(testData.lastName)
+                .checkResult(testData.userGender)
+                .checkResult(testData.userNumber);
 
     }
 
     @Test
     void failedFillFormFirstNameIsEmptyTest() {
         registrationPage.openPage()
-                .typeLastName(lastName)
-                .setGender(userGender)
-                .typeUserNumber(userNumber)
+                .typeLastName(testData.lastName)
+                .setGender(testData.userGender)
+                .typeUserNumber(testData.userNumber)
 
                 .submitRegistrationForm()
 
-                .emptyFirstNameCheck(errorCssKey, errorCssValue);
+                .emptyFirstNameCheck(testData.errorCssKey, testData.errorCssValue);
     }
 
 
     @Test
     void failedFillFormGenderIsEmptyTest() {
         registrationPage.openPage()
-                .typeFirstName(firstName)
-                .typeLastName(lastName)
-                .typeUserNumber(userNumber)
+                .typeFirstName(testData.firstName)
+                .typeLastName(testData.lastName)
+                .typeUserNumber(testData.userNumber)
 
                 .submitRegistrationForm()
 
-                .emptyUserGenderCheck(errorCssKey, errorCssValue);
+                .emptyUserGenderCheck(testData.errorCssKey, testData.errorCssValue);
 
     }
 
     @Test
     void failedFillFormUserNumberFilledByLettersTest() {
         registrationPage.openPage()
-                .typeFirstName(firstName)
-                .typeLastName(lastName)
-                .setGender(userGender)
-                .typeUserNumber(failedUserNumber)
+                .typeFirstName(testData.firstName)
+                .typeLastName(testData.lastName)
+                .setGender(testData.userGender)
+                .typeUserNumber(testData.failedUserNumber)
 
                 .submitRegistrationForm()
 
-                .failedUserNumberCheck(errorCssKey, errorCssValue);
+                .failedUserNumberCheck(testData.errorCssKey, testData.errorCssValue);
     }
 
 }
+
