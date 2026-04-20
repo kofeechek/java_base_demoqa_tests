@@ -19,6 +19,7 @@ public class RegistrationPage {
     private SelenideElement userEmailInput = $("#userEmail");
     private SelenideElement userNumberInput = $("#userNumber");
     private SelenideElement genderContainer = $("#genterWrapper");
+    private SelenideElement subjectsInput = $("#subjectsInput");
     private SelenideElement hobbyContainer = $("#hobbiesWrapper");
     private SelenideElement imageUploadButton = $("#uploadPicture");
     private SelenideElement userCurrentAddress = $("#currentAddress");
@@ -74,6 +75,11 @@ public class RegistrationPage {
         return this;
     }
 
+    public RegistrationPage typeUserSubjects(String value) {
+        subjectsInput.setValue(value).pressEnter();
+        return this;
+    }
+
     public RegistrationPage setHobby(String value) {
         hobbyContainer.$(byText(value)).click();
 
@@ -121,11 +127,6 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage checkResult(String value) {
-        resultContainer.shouldHave(text(value));
-
-        return this;
-    }
 
     public void emptyFirstNameCheck(String key, String value ) {
         firstNameInput.shouldHave(cssValue(key, value));

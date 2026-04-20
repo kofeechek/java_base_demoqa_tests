@@ -14,6 +14,7 @@ public class TestData {
     public String calendarMonth = faker.options().option("January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December");
     public String calendarYear = String.valueOf(faker.number().numberBetween(1960, 2008));
+    public final String userSubject = faker.options().option("Chemistry", "Math", "History", "English", "Accounting", "Art", "Social Studies", "Computer Science", "Commerce", "Economics", "Biology", "Hindi", "Physics", "Civics");
     public String userGender = faker.options().option("Male", "Female", "Other");
     public String failedUserEmail = faker.name().firstName();
     public String userNumber = faker.phoneNumber().subscriberNumber(10);

@@ -18,6 +18,7 @@ public class RegistrationTests extends TestBase {
                 .setGender(testData.userGender)
                 .typeUserNumber(testData.userNumber)
                 .setDateOfBirth(testData.calendarDay, testData.calendarMonth, testData.calendarYear)
+                .typeUserSubjects(testData.userSubject)
                 .setHobby(testData.userHobby)
                 .uploadImage(testData.userImage)
                 .typeUserCurrentAddress(testData.currentAddress)
