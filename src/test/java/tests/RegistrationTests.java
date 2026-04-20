@@ -33,6 +33,7 @@ public class RegistrationTests extends TestBase {
                 .checkFormResults("Gender", testData.userGender)
                 .checkFormResults("Mobile", testData.userNumber)
                 .checkFormResults("Date of Birth", testData.calendarDay + " " + testData.calendarMonth + "," + testData.calendarYear)
+                .checkFormResults("Subjects", testData.userSubject)
                 .checkFormResults("Hobbies", testData.userHobby)
                 .checkFormResults("Picture", testData.userImage)
                 .checkFormResults("Address", testData.currentAddress)
